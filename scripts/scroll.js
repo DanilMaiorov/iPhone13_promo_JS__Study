@@ -8,7 +8,6 @@ arrLinks.forEach(element => {
         e.preventDefault()
         const id = element.getAttribute('href').substring(1) //по клику создаем переменную и получаем атрибут и обрежем первый символ чтобы получить значение без #
         const section = document.getElementById(id)
-        console.log(section);
         if(section) { //если данная секция существует, то обращаемся к ней и делаем плавный скролл
             section.scrollIntoView({ //поддерживается не всеми браузерами, подключим еще 1 скрипт - полифилл и запустим его
                 behavior: 'smooth',
