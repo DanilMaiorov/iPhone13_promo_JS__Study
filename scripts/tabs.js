@@ -7,22 +7,22 @@ const tabsFunc = () => {
     const pageTitle = document.querySelector('title')
     const tabsOptions = [ //создадим массив с табами, добавим в массив 3 объекта, поскольку имеем 3 таба
         {
-        name: 'Graphite', 
-        memory: '128',
-        price: 70000,
-        image: 'img/iPhone-graphite.webp'
+            name: 'Graphite', 
+            memory: '128',
+            price: 70000,
+            image: 'img/iPhone-graphite.webp'
         },
         {
-        name: 'Silver', 
-        memory: '256',
-        price: 85000,
-        image: 'img/iPhone-silver.webp'
+            name: 'Silver', 
+            memory: '256',
+            price: 85000,
+            image: 'img/iPhone-silver.webp'
         },
         {
-        name: 'Sierra Blue', 
-        memory: '512',
-        price: 100000,
-        image: 'img/iPhone-sierra_blue.webp'
+            name: 'Sierra Blue', 
+            memory: '512',
+            price: 100000,
+            image: 'img/iPhone-sierra_blue.webp'
         },
     ]
     const changeContent = (index) => {
