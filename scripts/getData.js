@@ -1,12 +1,12 @@
 const getData = () => {
-    const list = document.querySelector('.cross-sell__list')
-    const btn = document.querySelector('.cross-sell__add')
+    const list = document.querySelector('.cross-sell__list');
+    const btn = document.querySelector('.cross-sell__add');
 
-    let stack = 4 //переменная, которая юудет говорить по сколько карточек по нажатию на кнопку показать еще будем выводить
-    let count = 1
+    let stack = 4;
+    let count = 1;
 
     const render = (data) => { //функция отрисовки
-        list.innerHTML = ''
+        list.innerHTML = '';
         data.forEach(item => {
             list.insertAdjacentHTML('beforeend', `
                 <li>
@@ -17,43 +17,42 @@ const getData = () => {
                         <button type="button" class="button button_buy cross-sell__button">Купить</button>
                     </article>
                 </li>
-            `)
-        })
-    }
-    const sliceArray = (data, index) => { //функция отвечающая за отрезки от нашего масива данных определенных участков
-        return data.slice(0, index)
-    }
+            `);
+        });
+    };
+    const sliceArray = (data, index) => {
+        return data.slice(0, index);
+    };
     const changeData = (data) => {
-        const newStack = stack * count //переменная увеличения отрисовывыемых карточек
-        render(sliceArray(data, newStack)) //вызываем функцию рендер, которую прогоняем через слайс, чтобы указать по сколько карточек будем выводить на рендер
-        if(data.length > newStack) { //если длина даты больше, чем newStack
-            count++ //будем увеличивать count на 1
+        const newStack = stack * count;
+        render(sliceArray(data, newStack));
+        if(data.length > newStack) {
+            count++;
         } else {
-            //убираем кнопку, для этого нам нужно замкнуть fetch в новой функции
-            btn.style.display = 'none'
+            btn.style.display = 'none';
         }
-    }
+    };
     const getGoods = () => {
-        fetch('./cross-sell-dbase/dbase.json') //получаем данные и конвертируем их
+        fetch('./cross-sell-dbase/dbase.json')
         .then((res) => {
             if(res.ok) {
-                return res.json() //если запрос ок, то ок, если нет, то выкинеи ошибку
+                return res.json();
             } else {
-                throw new Error('Ошибка в получении данных')
+                throw new Error('Ошибка в получении данных');
             }
         })
         .then((data) => {
-            changeData(data) //вызываем changeData сразу как получаем данный с сервера 
+            changeData(data);
         })
         .catch((error) => {
-            console.error(error.message)
+            console.error(error.message);
         })
         .finally(() => {
             console.log('finally');
-        })
-        }
-        btn.addEventListener('click', getGoods) //каждый раз по клику на Показать еще будем вызывать функцию получения данных и проделывать с ними все описанные операции
-        getGoods()
-    }
+        });
+        };
+        btn.addEventListener('click', getGoods);
+        getGoods();
+    };
 
-    getData()
+    getData();
